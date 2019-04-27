@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bricks - The Game</title>
+	 <style>
+	 	.Stage{
+			position: relative;
+			width: 560px;
+			height: 600px;
+			background: #fff;
+			margin: 0 auto;
+			display: flex;
+		}
+		.Scene{
+			position: relative;
+			width: 100%;
+			height: 100%;
+			background: #000;
+		}
+		.Block{
+			position: absolute;
+			width: 100px;
+			height: 20px;
+			background: #00f;
+			z-index: 10;
+		}
+		.Player{
+			position: absolute;
+			left: calc(50% - 50px);
+			bottom: 10px;
+			width: 100px;
+			height: 10px;
+			background: #fff;
+		}
+		.Ball{
+			position: absolute;
+			left: calc(50% - 14px);
+			bottom: 40px;
+			width: 28px;
+			height: 28px;
+			background: #ccc;
+			border-radius: 28px;
+			z-index: 11;
+		}
+	 </style>
+  </head>
+  <body>
+		<div class="Stage">
+			<div class="Scene">
+				<div class="Block" style="top: 10px; left:10px"></div>
+				<div class="Block" style="top: 10px; left:120px"></div>
+				<div class="Block" style="top: 10px; left:230px"></div>
+				<div class="Block" style="top: 10px; left:340px"></div>
+				<div class="Block" style="top: 10px; left:450px"></div>
+
+				<div class="Block" style="top: 40px; left:10px"></div>
+				<div class="Block" style="top: 40px; left:120px"></div>
+				<div class="Block" style="top: 40px; left:230px"></div>
+				<div class="Block" style="top: 40px; left:340px"></div>
+				<div class="Block" style="top: 40px; left:450px"></div>
+
+				<div class="Block" style="top: 70px; left:10px"></div>
+				<div class="Block" style="top: 70px; left:120px"></div>
+				<div class="Block" style="top: 70px; left:230px"></div>
+				<div class="Block" style="top: 70px; left:340px"></div>
+				<div class="Block" style="top: 70px; left:450px"></div>
+
+				<div class="Block" style="top: 100px; left:10px"></div>
+				<div class="Block" style="top: 100px; left:120px"></div>
+				<div class="Block" style="top: 100px; left:230px"></div>
+				<div class="Block" style="top: 100px; left:340px"></div>
+				<div class="Block" style="top: 100px; left:450px"></div>
+
+				<div class="Ball"></div>
+
+				<div class="Player"></div>
+			</div>
+		</div>
+
+	   <script src="index.js"></script>
+  </body>
+</html>
