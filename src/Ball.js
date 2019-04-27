@@ -1,3 +1,4 @@
+
 class Ball {
 	constructor(game) {
 		this.ballTag = document.querySelector('.Ball');
@@ -12,7 +13,7 @@ class Ball {
 
 	update = ()=>{
 	}
-	
+
 	startRandom = ()=>{
 		const x = Math.floor(Math.random() * 2)-1;
 		const y = Math.floor(Math.random() * 2)-1;
@@ -29,9 +30,22 @@ class Ball {
 		const colideSceneLeft = this.x <= 0;
 		const colideSceneRight = this.x >= this.game.width-this.width;
 
-		if(this.game.colideWithBlocks(this) || this.game.colideWithPlayer(this)){
+		const colideWithPlayer = this.game.colideWithPlayer(this);
+
+		console.log(colideWithPlayer);
+
+		if(this.game.colideWithBlocks(this) || colideWithPlayer != false){
 			y = -y;
 			x = -x;
+
+			if(colideWithPlayer < 0){
+				console.log('<0');
+				x = Math.abs(x)*-1;
+			}
+			if(colideWithPlayer > 0){
+				console.log('>0');
+				x = Math.abs(x);
+			}
 		}
 
 		if(colideSceneTop){
@@ -41,6 +55,7 @@ class Ball {
 			x = -x;
 		}
 		if(colideSceneBottom){
+			console.error("DEAD!!!");
 			this.reset();
 			this.startRandom();
 			return;

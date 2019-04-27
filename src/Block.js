@@ -1,3 +1,5 @@
+import Collision from "./Collision";
+
 class Block {
 	constructor(game, tag) {
 		this.tag = tag;
@@ -20,10 +22,7 @@ class Block {
 		const targetA = ball;
 		const targetB = this;
 
-		const match = !(targetB.x > (targetA.x + targetA.width) ||
-           (targetB.x + targetB.width) < targetA.x ||
-           targetB.y > (targetA.x + targetA.height) ||
-           (targetB.y + targetB.height) < targetA.y);
+		const match = Collision.between(targetA, targetB);
 
 		if(match){
 			this.destroyed = true;

@@ -1,3 +1,5 @@
+import Collision from "./Collision";
+
 class Player {
 	constructor(game) {
 		// this.n = n;
@@ -29,12 +31,25 @@ class Player {
 	}
 
 	colideWith = (ball)=>{
-		const match = !(this.x > (ball.x + ball.width) ||
-           (this.x + this.width) < ball.x ||
-           this.y > (ball.x + ball.height) ||
-           (this.y + this.height) < ball.y);
 
-		return match;
+		const left = {x: this.x, y:this.y, width: this.width/2, height: this.height};
+		const right = {x: this.x+this.width/2, y:this.y, width: this.width/2, height: this.height};
+
+
+		const matchLeft = Collision.between(left, ball);
+		const matchRight = Collision.between(right, ball);
+
+		console.log(this.x, this.y, this.width, this.height);
+		console.log(left, matchLeft);
+		console.log(right, matchRight);
+
+	   if(matchLeft)
+			return -1;
+
+	  if(matchRight)
+		  return 1;
+
+		return false;
 	}
 	//
 	// get isGoingUp (){
