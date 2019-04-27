@@ -4,9 +4,6 @@ import Block from './Block';
 
 class Game {
 	constructor(){
-		// this.playing;
-		// this.playingInterval;
-
 		this.stageTag = document.querySelector('.Stage');
 		this.sceneTag = document.querySelector('.Scene');
 
@@ -34,8 +31,13 @@ class Game {
 	}
 
 	movePlayer = (e)=>{
-		console.log(e.key);
 		switch (e.key) {
+			case "ArrowUp":
+				console.clear();
+			break;
+			case "ArrowDown":
+				console.clear();
+			break;
 			case "ArrowLeft":
 				this.player.moveLeft();
 			break;
@@ -45,10 +47,10 @@ class Game {
 		}
 	}
 
-	colideWithBlocks = (ball)=>{
+	colideWithBlocks(){
 		for(const block of this.blocks){
 			if(!block.destroyed){
-				const collided = block.colideWith(ball);
+				const collided = block.colideWith(this.ball);
 				if(collided){
 					return true;
 				}
@@ -56,13 +58,7 @@ class Game {
 		};
 		return false;
 	}
-	colideWithPlayer = (ball)=>{
-		return this.player.colideWith(ball);
-	}
 
-	// get isPlaying (){
-	// 	return this.playing;
-	// }
 	get width (){
 		return this.sceneTag.offsetWidth;
 	}

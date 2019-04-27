@@ -1,14 +1,17 @@
+import Measurable from "./Measurable";
 
-class Ball {
+class Ball extends Measurable {
 	constructor(game) {
-		this.ballTag = document.querySelector('.Ball');
+		super(document.querySelector('.Ball'));
+
 		this.game = game;
 		this.reset();
+		this.scale = 5;
 	}
 
 	reset = ()=>{
 		this.x = this.game.width/2 - this.width/2;
-		this.y = this.game.height - 80;
+		this.y = this.game.height - 120;
 	}
 
 	update = ()=>{
@@ -18,7 +21,7 @@ class Ball {
 		const x = Math.floor(Math.random() * 2)-1;
 		const y = Math.floor(Math.random() * 2)-1;
 
-		this.start(x>0?10:-10, y>0?10:-10);
+		this.start(x>0?this.scale:-this.scale, y>0?this.scale:-this.scale);
 	}
 
 	start = (x, y)=>{
@@ -30,22 +33,23 @@ class Ball {
 		const colideSceneLeft = this.x <= 0;
 		const colideSceneRight = this.x >= this.game.width-this.width;
 
-		const colideWithPlayer = this.game.colideWithPlayer(this);
+		const colideWithBlocks = this.game.colideWithBlocks();
+		const colideWithPlayer = this.game.player.colideWith(this);
 
-		console.log(colideWithPlayer);
-
-		if(this.game.colideWithBlocks(this) || colideWithPlayer != false){
+		if(colideWithBlocks){
 			y = -y;
 			x = -x;
-
-			if(colideWithPlayer < 0){
-				console.log('<0');
-				x = Math.abs(x)*-1;
-			}
-			if(colideWithPlayer > 0){
-				console.log('>0');
-				x = Math.abs(x);
-			}
+		}
+		
+		if(colideWithPlayer < 0){
+			console.log('<0');
+			x = Math.abs(x)*-1;
+			y = -y;
+		}
+		if(colideWithPlayer > 0){
+			console.log('>0');
+			x = Math.abs(x);
+			y = -y;
 		}
 
 		if(colideSceneTop){
@@ -61,44 +65,9 @@ class Ball {
 			return;
 		}
 
-		//
-		// if(colideSceneLeft){
-		// 	this.game.player2.tickScore();
-		// }
-		// if(colideSceneRight){
-		// 	this.game.player1.tickScore();
-		// }
-		// if(colideSceneLeft || colideSceneRight){
-		// 	this.reset();
-		// 	this.startRandom();
-		// 	return;
-		// }
-		//
 		setTimeout(()=>{
 			this.start(x, y)
-		},1000/10)
-	}
-
-
-
-	get x (){
-		return this.ballTag.offsetLeft;
-	}
-	set x (x){
-		this.ballTag.style.left = x + 'px';
-	}
-	get y (){
-		return this.ballTag.offsetTop;
-	}
-	set y (y){
-		this.ballTag.style.top = y + 'px';
-	}
-
-	get width (){
-		return this.ballTag.offsetWidth;
-	}
-	get height (){
-		return this.ballTag.offsetHeight;
+		},1000/20)
 	}
 }
 
