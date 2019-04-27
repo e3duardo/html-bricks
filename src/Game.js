@@ -44,14 +44,20 @@ class Game {
 			break;
 		}
 	}
+
 	colideWithBlocks = (ball)=>{
-		console.log(this.blocks);
-		
 		for(const block of this.blocks){
 			if(!block.destroyed){
-				return block.colideWith(ball);
+				const collided = block.colideWith(ball);
+				if(collided){
+					return true;
+				}
 			}
 		};
+		return false;
+	}
+	colideWithPlayer = (ball)=>{
+		return this.player.colideWith(ball);
 	}
 
 	// get isPlaying (){

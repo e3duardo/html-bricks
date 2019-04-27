@@ -27,6 +27,15 @@ class Player {
 			this.x = this.game.width-this.width;
 		}
 	}
+
+	colideWith = (ball)=>{
+		const match = !(this.x > (ball.x + ball.width) ||
+           (this.x + this.width) < ball.x ||
+           this.y > (ball.x + ball.height) ||
+           (this.y + this.height) < ball.y);
+
+		return match;
+	}
 	//
 	// get isGoingUp (){
 	// 	return this.lastMove > 0;

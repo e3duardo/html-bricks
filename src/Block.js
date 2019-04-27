@@ -17,18 +17,19 @@ class Block {
 	}
 
 	colideWith = (ball)=>{
-		const pos = this.getPositions(this);
-		const pos2 = this.getPositions(ball);
+		const targetA = ball;
+		const targetB = this;
 
-		const horizontalMatch = this.comparePositions(pos[0], pos2[0]);
-		const verticalMatch = this.comparePositions(pos[1], pos2[1]);
-		const match = horizontalMatch && verticalMatch;
+		const match = !(targetB.x > (targetA.x + targetA.width) ||
+           (targetB.x + targetB.width) < targetA.x ||
+           targetB.y > (targetA.x + targetA.height) ||
+           (targetB.y + targetB.height) < targetA.y);
 
 		if(match){
 			this.destroyed = true;
 			this.tag.parentNode.removeChild(this.tag);
 		}
-		
+
 		return match;
 	}
 	// tickScore = ()=>{

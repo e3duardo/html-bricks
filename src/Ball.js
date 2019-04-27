@@ -12,7 +12,7 @@ class Ball {
 
 	update = ()=>{
 	}
-	//
+	
 	startRandom = ()=>{
 		const x = Math.floor(Math.random() * 2)-1;
 		const y = Math.floor(Math.random() * 2)-1;
@@ -29,7 +29,7 @@ class Ball {
 		const colideSceneLeft = this.x <= 0;
 		const colideSceneRight = this.x >= this.game.width-this.width;
 
-		if(this.game.colideWithBlocks(this)){
+		if(this.game.colideWithBlocks(this) || this.game.colideWithPlayer(this)){
 			y = -y;
 			x = -x;
 		}
@@ -61,7 +61,7 @@ class Ball {
 		//
 		setTimeout(()=>{
 			this.start(x, y)
-		},1000/5)
+		},1000/10)
 	}
 
 
