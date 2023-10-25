@@ -27,7 +27,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "parcel-bundler": "^1.12.3"
+    "parcel-bundler": "^1.12.5"
   },
   "dependencies": {
     "src": "^1.1.2"
